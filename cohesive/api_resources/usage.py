@@ -12,17 +12,16 @@ class UsageParams(BaseParams):
     workspace_id: int
     instance_id: int
     units: int
-
+    idempotency_key: str
+    timestamp: int
 
 class Usage:
-
     @classmethod
     def report(cls, params: UsageParams):
         if not params.idempotency_key:
             raise IdempotencyError
-
         try:
-            response = requests.post(f'{api_base}/usage', data=asdict(params), headers={'Authorization': f'Bearer {api_key}'})
+            response = requests.post(f'{api_base}/report-usage', data=asdict(params), headers={'Authorization': f'Bearer {api_key}'})
             response.raise_for_status()
         except ConnectionError as e:
             raise APIConnectionError(message=str(e), http_status=None, http_body=None, http_headers=None)

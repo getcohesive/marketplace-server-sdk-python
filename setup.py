@@ -10,7 +10,7 @@ setup(
     url="https://github.com/getcohesive/marketplace-server-sdk-python",
     license="MIT",
     keywords="cohesive api marketplace saas",
-    packages=['cohesive'],
+    packages=['cohesive', 'cohesive.api_resources'],
     install_requires=[
         'requests >= 2.28.2',
         'PyJWT >= 2.6.0',
