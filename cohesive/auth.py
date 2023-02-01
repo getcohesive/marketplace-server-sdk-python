@@ -2,8 +2,8 @@ from dataclasses import dataclass
 import datetime
 
 import jwt
+import cohesive
 
-from cohesive import app_secret
 from cohesive.error import AuthenticationError
 
 
@@ -22,7 +22,7 @@ class AuthDetails:
 
 def validate_token(token: str) -> AuthDetails:
     try:
-        claims = jwt.decode(token, app_secret, algorithms=["HS256"])
+        claims = jwt.decode(token, cohesive.app_secret, algorithms=["HS256"])
         return AuthDetails(**claims)
     except jwt.exceptions.PyJWTError as e:
         raise AuthenticationError(message=str(e), http_status=None, http_body=None, http_headers=None)
