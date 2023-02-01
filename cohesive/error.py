@@ -2,7 +2,7 @@ import typing
 
 
 class CohesiveError(Exception):
-    def __init__(self, message: typing.Union[str, None], http_status: typing.Union[int, None], http_body: typing.Union[str, None], http_headers: typing.Union[dict[str, str], None]):
+    def __init__(self, message: typing.Union[str, None], http_status: typing.Union[int, None], http_body: typing.Union[str, None], http_headers: typing.Union[typing.Dict[str, str], None]):
         super(CohesiveError, self).__init__(message)
 
         self._message = message
