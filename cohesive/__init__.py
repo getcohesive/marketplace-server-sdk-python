@@ -6,7 +6,7 @@ app_id = None
 app_secret = None
 
 # API resources
-from cohesive.api_resources import *
-from cohesive.auth import *
-from cohesive.error import *
-from cohesive.params import *
+from .api_resources import *
+from .auth import *
+from .error import *
+from .params import *
