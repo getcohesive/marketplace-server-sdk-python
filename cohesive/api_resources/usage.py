@@ -1,8 +1,8 @@
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 
 import requests
-
-from cohesive import api_base, api_key
+import json
+import cohesive 
 from cohesive.error import IdempotencyError, APIConnectionError, APIError
 from cohesive.params import BaseParams
 
@@ -21,7 +21,7 @@ class Usage:
         if not params.idempotency_key:
             raise IdempotencyError
         try:
-            response = requests.post(f'{api_base}/report-usage', data=asdict(params), headers={'Authorization': f'Bearer {api_key}'})
+            response = requests.post(f'{cohesive.api_base}/report-usage', data=json.dumps(params.__dict__), headers={'Authorization': f'Bearer {cohesive.api_key}'})
             response.raise_for_status()
         except ConnectionError as e:
             raise APIConnectionError(message=str(e), http_status=None, http_body=None, http_headers=None)
