@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="cohesive-marketplace-server-sdk-python",
-    version="1.0.0",
+    version="1.0.1",
     description="Python bindings for the Cohesive Marketplace API",
     author="Cohesive",
     author_email="contact@cohesive.so",

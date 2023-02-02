@@ -12,8 +12,8 @@ class UsageParams(BaseParams):
     workspace_id: int
     instance_id: int
     units: int
-    idempotency_key: str
     timestamp: int
+
 
 class Usage:
     @classmethod

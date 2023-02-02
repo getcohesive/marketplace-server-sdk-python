@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cohesive-marketplace-server-sdk-python"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Team Cohesive", email="contact@cohesive.so" },
 ]
