@@ -11,6 +11,7 @@ from cohesive.error import AuthenticationError
 class AuthDetails:
     user_id: int
     user_name: str
+    user_email: str
     role: str
     workspace_id: int
     workspace_name: str
@@ -24,7 +25,7 @@ class AuthDetails:
 def validate_token(token: str) -> AuthDetails:
     try:
         claims = jwt.decode(token, cohesive.app_secret, algorithms=["HS256"])
-        return AuthDetails(
+        auth_details = AuthDetails(
             user_id=claims.get("user_id"),
             user_name=claims.get("user_name"),
             role=claims.get("role"),
@@ -36,5 +37,7 @@ def validate_token(token: str) -> AuthDetails:
             is_in_trial=claims.get("is_in_trial"),
             trial_items_count=claims.get("trial_items_count"),
         )
+        if claims.get("user_email") != None:
+            auth_details.user_email = claims.get("user_email")
     except jwt.exceptions.PyJWTError as e:
         raise AuthenticationError(message=str(e), http_status=None, http_body=None, http_headers=None)
