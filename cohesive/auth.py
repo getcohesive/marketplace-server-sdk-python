@@ -35,9 +35,8 @@ def validate_token(token: str) -> AuthDetails:
             current_period_started_at=claims.get("current_period_started_at"),
             current_period_ends_at=claims.get("current_period_ends_at"),
             is_in_trial=claims.get("is_in_trial"),
+            user_email = claims.get("user_email")
             trial_items_count=claims.get("trial_items_count"),
         )
-        if claims.get("user_email") != None:
-            auth_details.user_email = claims.get("user_email")
     except jwt.exceptions.PyJWTError as e:
         raise AuthenticationError(message=str(e), http_status=None, http_body=None, http_headers=None)
