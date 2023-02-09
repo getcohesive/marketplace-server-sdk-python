@@ -25,7 +25,7 @@ class AuthDetails:
 def validate_token(token: str) -> AuthDetails:
     try:
         claims = jwt.decode(token, cohesive.app_secret, algorithms=["HS256"])
-        auth_details = AuthDetails(
+        return AuthDetails(
             user_id=claims.get("user_id"),
             user_name=claims.get("user_name"),
             role=claims.get("role"),
